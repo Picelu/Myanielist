@@ -1,0 +1,62 @@
+# first we need our anime list + Genre
+
+
+#now we ask the user what he wants to do 
+T = True
+while T:
+  dic_of_anime = {}
+  question = input("Welcome to myanimelist, What would you like to do? (add/view) ->").lower().strip(".!?,")
+  #to add an anime
+  if question == "add":
+    anime_count = 0
+    new_anime = input("What is the anime you would like to add? ->").capitalize()
+    anime_genre = input("What is the genre of this anime ->").capitalize()
+
+    dic_of_anime[str(new_anime)] = str(anime_genre)
+
+    for anime in dic_of_anime:
+      anime_count +=1
+
+    print("Congrats you have watched " + str(anime_count) + " anime series!")
+  # to view
+  elif question == "view":
+    if dic_of_anime == {}:
+      print("Error: there is nothing in your list")
+    else:
+      v_question = input("What would you like to view? (all/specific) -> ").lower().strip("!,.?")
+
+      # now for viewing all anime ive watched
+      if v_question == "all":
+        print("Watch list:")
+        for anime in dic_of_anime:
+          print(str(anime) + ":" + str(dic_of_anime[anime]))
+
+      elif v_question == "specific":
+        showquestion = input("Which show would you like to know about? -> ").capitalize()
+
+        if showquestion in dic_of_anime:
+          print("The show " + str(showquestion) + " has a genre of " + str(dic_of_anime[showquestion]))
+        else:
+          new_add = input("Sorry thats not on the list would you like to add it? (yes/no)->").lower() 
+
+          if new_add == "yes":
+            
+            anime_genre = input("What is the genre of this anime ->")
+
+            dic_of_anime[str(showquestion)] = str(anime_genre)
+          else:
+            ("Add later")
+
+
+        
+          
+
+  question3 = input("Would you like to continue? (yes/no)->").lower().strip("!.,?")
+
+  if question3 == "yes":
+    T = True
+    print("\n"*50)
+  else:
+    T = False
+    print("See you next time!")
+    dic_of_anime = dic_of_anime
